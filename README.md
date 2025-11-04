@@ -76,15 +76,12 @@ FLOW_SECRET_KEY=DEMO_SECRET_KEY
 ### Instalación
 
 ```bash
-# Instalar dependencias
+
 npm install
 
-# Ejecutar en modo desarrollo
+
 npm run start:dev
 
-# Build para producción
-npm run build
-npm run start:prod
 ```
 
 ### Seeders (opcional)

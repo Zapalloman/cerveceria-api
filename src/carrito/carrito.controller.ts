@@ -8,10 +8,10 @@ export class CarritoController {
   constructor(private readonly carritoService: CarritoService) {}
 
   @Get()
-  @ApiOperation({ summary: 'Obtener carrito del usuario' })
-  @ApiResponse({ status: 200, description: 'Carrito obtenido' })
+  @ApiOperation({ summary: 'Obtener carrito del usuario con items' })
+  @ApiResponse({ status: 200, description: 'Carrito obtenido con items' })
   obtenerCarrito(@Query('usuarioId') usuarioId: string) {
-    return this.carritoService.obtenerCarrito(usuarioId);
+    return this.carritoService.obtenerCarritoConItems(usuarioId);
   }
 
   @Post('items')

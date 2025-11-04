@@ -12,15 +12,16 @@ export class PedidosService {
   ) {}
 
   async crear(usuarioId: string, direccionId: string, metodoPago: string): Promise<Pedido> {
-    const carrito = await this.carritoService.obtenerCarrito(usuarioId);
+    // Usar el nuevo método que trae el carrito CON los items poblados
+    const carritoConItems = await this.carritoService.obtenerCarritoConItems(usuarioId);
 
-    if (!carrito.items || carrito.items.length === 0) {
+    if (!carritoConItems || !carritoConItems.items || carritoConItems.items.length === 0) {
       throw new Error('El carrito está vacío');
     }
 
     const numeroOrden = `ORD-${Date.now()}`;
 
-    const items = carrito.items.map((item) => ({
+    const items = carritoConItems.items.map((item) => ({
       productoId: item.productoId,
       nombreProducto: 'Producto', // En producción, obtener del producto
       cantidad: item.cantidad,
@@ -33,9 +34,9 @@ export class PedidosService {
       usuarioId,
       direccionId,
       items,
-      subtotal: carrito.subtotal,
-      iva: carrito.iva,
-      total: carrito.total,
+      subtotal: carritoConItems.subtotal,
+      iva: carritoConItems.iva,
+      total: carritoConItems.total,
       metodoPago,
       estado: 'Procesando',
     });

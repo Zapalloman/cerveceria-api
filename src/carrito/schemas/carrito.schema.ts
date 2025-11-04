@@ -1,24 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Types } from 'mongoose';
 
-class ItemCarrito {
-  @Prop({ required: true, type: Types.ObjectId, ref: 'Producto' })
-  productoId: Types.ObjectId;
-
-  @Prop({ required: true, min: 1 })
-  cantidad: number;
-
-  @Prop({ required: true, min: 0 })
-  precioUnitario: number;
-}
-
 @Schema({ timestamps: true })
 export class Carrito extends Document {
   @Prop({ required: true, type: Types.ObjectId, ref: 'Usuario', unique: true })
   usuarioId: Types.ObjectId;
-
-  @Prop({ type: [ItemCarrito], default: [] })
-  items: ItemCarrito[];
 
   @Prop({ default: 0 })
   subtotal: number;
@@ -28,6 +14,9 @@ export class Carrito extends Document {
 
   @Prop({ default: 0 })
   total: number;
+
+  @Prop({ default: 0 })
+  cantidadItems: number; // Cantidad total de items en el carrito
 }
 
 export const CarritoSchema = SchemaFactory.createForClass(Carrito);

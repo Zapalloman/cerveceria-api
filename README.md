@@ -1,4 +1,4 @@
-# Cervecería Craft & Beer - Backend API
+# Cervecería Craft & Beer - Backend API | JAVIER FARÍAS
 
 API REST desarrollada con NestJS para el e-commerce de cervezas artesanales. Proporciona endpoints para gestión de productos, usuarios, carritos de compra, pedidos, pagos y analytics.
 
